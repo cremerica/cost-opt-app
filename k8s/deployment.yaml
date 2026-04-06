@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memory-cpu-tester
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memory-cpu-tester
+  template:
+    metadata:
+      labels:
+        app: memory-cpu-tester
+    spec:
+      containers:
+      - name: app
+        image: cremerfc/cost-opt-app:latest  # Updated to Docker Hub image
+        ports:
+        - containerPort: 5000
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: memory-cpu-tester-service
+spec:
+  selector:
+    app: memory-cpu-tester
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
+  type: LoadBalancer
