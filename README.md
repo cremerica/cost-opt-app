@@ -6,6 +6,7 @@ This is a simple Flask application designed to test memory and CPU consumption i
 
 - Increase/decrease memory consumption by allocating/deallocating large data structures
 - Increase/decrease CPU consumption by starting/stopping background computation threads
+- Automatic random adjustments every 6 hours to simulate varying load
 
 ## Endpoints
 
@@ -47,4 +48,5 @@ To set up:
 
 - Memory increases are in ~4MB increments
 - CPU load uses a simple summation loop; adjust the range for more/less intensity
+- Automatic adjustments occur every 6 hours, randomly increasing or decreasing memory or CPU
 - This is for testing purposes only; not optimized for production
